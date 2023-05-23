@@ -1,11 +1,13 @@
 ﻿namespace Core
 {
-
     /// <summary>
     /// Fábrica de árboles de decisiones delegada de instanciar nuevos nodos raíz
     /// cuyo funcionamiento será determinar la enfermedad del paciente basado
-    /// en una serie de factores
+    /// en una serie de factores.
     /// 
+    /// <author>
+    /// Autor Github @sbalex27
+    /// </author>
     /// </summary>
     public class DecisionTreeFactory : IDisposable, IDecisionTreeFactory
     {
