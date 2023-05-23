@@ -1,23 +1,23 @@
 ﻿namespace Core
 {
-    public class Node
-    {
-        public Node() { }
 
-        public Node(string label)
-        {
-            Label = label;
-        }
-
-        public string Label { get; set; } = null!;
-        public Node? Confirm { get; set; }
-        public Node? Decline { get; set; }
-    }
-
-    public class DecisionTree
+    /// <summary>
+    /// Fábrica de árboles de decisiones delegada de instanciar nuevos nodos raíz
+    /// cuyo funcionamiento será determinar la enfermedad del paciente basado
+    /// en una serie de factores
+    /// 
+    /// </summary>
+    public class DecisionTreeFactory : IDisposable, IDecisionTreeFactory
     {
         public Node? Root { get; set; }
 
+        /// <summary>
+        /// Crea una nueva instancia de un nodo raíz que contiene el resto
+        /// del árbol
+        /// </summary>
+        /// <returns>Nodo raíz con el árbol cargado en memoria</returns>
+        /// <exception cref="NullReferenceException">Excepción lanzada cuando se intenta crear un 
+        /// nuevo nodo raíz sin haber sido configurado</exception>
         public Node Create()
         {
             if (Root is null)
@@ -30,6 +30,16 @@
             }
         }
 
+        public void Dispose()
+        {
+            Root = null;
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Configura el árbol de decisiones basado en una serie de subárboles
+        /// delegados de contener cierto grupo de enfermedades relacionadas
+        /// </summary>
         public void Configure()
         {
             ITree vasculares = new TreeVasculares();
