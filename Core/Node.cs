@@ -10,13 +10,26 @@
     {
         public Node() { }
 
+        /// <summary>
+        /// Inicializa el nodo
+        /// </summary>
+        /// <param name="label">Etiqueta descriptiva del nodo</param>
         public Node(string label)
         {
             Label = label;
         }
 
+        /// <summary>
+        /// Etiqueta descriptiva del nodo
+        /// </summary>
         public string Label { get; set; } = null!;
+        /// <summary>
+        /// Referencia a Nodo en caso de confirmación de condicional
+        /// </summary>
         public Node? Confirm { get; set; }
+        /// <summary>
+        /// Referencia a Nodo en caso de rechazo de condicional
+        /// </summary>
         public Node? Decline { get; set; }
     }
 }
